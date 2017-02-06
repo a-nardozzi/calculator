@@ -34,6 +34,14 @@ class ViewController: UIViewController {
     var number: String = ""
     @IBOutlet var displayLabel: UILabel!
     
+    var displayValue: Double? {
+        if !operands.isEmpty() {
+            return operands.top()
+        } else {
+            return nil
+        }
+    }
+    
     @IBAction func keyStrike(_ sender: UIButton) {
         let button = sender.titleLabel?.text
         
@@ -70,6 +78,7 @@ class ViewController: UIViewController {
         operands.pop()
         let op = operators.top()
         operators.pop()
+        
         if op == "+" {
             ans=a+b
         } else if op == "-" {
@@ -83,9 +92,8 @@ class ViewController: UIViewController {
     }
     
     func updateDisplay(){
-        let num = operands.top()
-        if let displayValue = num {
-            displayLabel.text = num
+        if let displayValue = displayValue {
+            displayLabel.text = String(displayValue)
         } else {
             displayLabel.text = ""
         }
