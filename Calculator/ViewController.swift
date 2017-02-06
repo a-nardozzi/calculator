@@ -8,15 +8,15 @@
 
 import UIKit
 
-struct Stack<Element>{
+class Stack<Element>{
     var data = [Element]()
     func top() -> Element {
         return data[data.count - 1]
     }
-    mutating func pop() {
+    func pop() {
         data.removeLast()
     }
-    mutating func push(_ datum: Element) {
+    func push(_ datum: Element) {
         data.append(datum)
     }
     func isEmpty() -> Bool {
@@ -47,15 +47,23 @@ class ViewController: UIViewController {
         
         while button != "="{
             switch button!{
-                case "+", "-", "*", "/":
+                case "+", "-":
+                    operators.push(button!)
+                    operands.push(makeNumber(number))
+                    number = ""
+                case "*", "/":
                     operators.push(button!)
                     operands.push(makeNumber(number))
                     operands.push(doMath())
+                    number = ""
                 case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
                     number.append(button!) //builds the number
                 default:
                     print("Error")
             }
+        }
+        while !operands.isEmpty() {
+            operands.push(doMath())
         }
         
     }
