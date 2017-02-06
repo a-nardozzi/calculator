@@ -48,16 +48,19 @@ class ViewController: UIViewController {
         while button != "="{
             switch button!{
                 case "+", "-":
+                    if(!operators.isEmpty()){
+                        operands.push(doMath())
+                    }
                     operators.push(button!)
-                    operands.push(makeNumber(number))
-                    number = ""
                 case "*", "/":
+                    if operators.top() == "*" || operators.top() == "/" {
+                        operands.push(doMath())
+                    }
                     operators.push(button!)
-                    operands.push(makeNumber(number))
-                    operands.push(doMath())
-                    number = ""
-                case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
-                    number.append(button!) //builds the number
+                
+                
+                    case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
+                        number.append(button!) //builds the number
                 default:
                     print("Error")
             }
