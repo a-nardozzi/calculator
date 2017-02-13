@@ -34,13 +34,11 @@ class ViewController: UIViewController {
     var number: String = ""
     @IBOutlet var displayLabel: UILabel!
     
-    var displayValue: Double? {
-        if !operands.isEmpty() {
-            return operands.top()
-        } else {
-            return nil
-        }
+    func updateDisplay(_ displayValue: Double){
+        displayLabel.text = String(displayValue)
     }
+    
+    
     
     @IBAction func keyStrike(_ sender: UIButton) {
         let button = sender.titleLabel?.text
@@ -48,11 +46,13 @@ class ViewController: UIViewController {
         while button != "="{
             switch button!{
                 case "+", "-":
+                    operands.push(makeNumber(number))
                     if(!operators.isEmpty()){
                         operands.push(doMath())
                     }
                     operators.push(button!)
                 case "*", "/":
+                    operands.push(makeNumber(number))
                     if operators.top() == "*" || operators.top() == "/" {
                         operands.push(doMath())
                     }
@@ -60,7 +60,9 @@ class ViewController: UIViewController {
                 
                 
                     case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
+                        print("pressed", button!)
                         number.append(button!) //builds the number
+                        updateDisplay(Double(number)!)
                 default:
                     print("Error")
             }
@@ -102,13 +104,6 @@ class ViewController: UIViewController {
         return ans
     }
     
-    func updateDisplay(){
-        if let displayValue = displayValue {
-            displayLabel.text = String(displayValue)
-        } else {
-            displayLabel.text = ""
-        }
-    }
+    
 
 }
-
