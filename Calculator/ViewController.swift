@@ -50,10 +50,8 @@ class ViewController: UIViewController {
     func doMath() -> Double {
         var ans: Double = 0
         let b = operands.top()
-        print("b:",b)
         operands.pop()
         let a = operands.top()
-        print("a:", a)
         operands.pop()
         let op = operators.top()
         operators.pop()
