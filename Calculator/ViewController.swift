@@ -38,42 +38,6 @@ class ViewController: UIViewController {
         displayLabel.text = String(displayValue)
     }
     
-    
-    
-    @IBAction func keyStrike(_ sender: UIButton) {
-        let button = sender.titleLabel?.text
-        
-        while button != "="{
-            switch button!{
-                case "+", "-":
-                    operands.push(makeNumber(number))
-                    if(!operators.isEmpty()){
-                        operands.push(doMath())
-                    }
-                    operators.push(button!)
-                case "*", "/":
-                    operands.push(makeNumber(number))
-                    if operators.top() == "*" || operators.top() == "/" {
-                        operands.push(doMath())
-                    }
-                    operators.push(button!)
-                
-                
-                    case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
-                        print("pressed", button!)
-                        number.append(button!) //builds the number
-                        updateDisplay(Double(number)!)
-                default:
-                    print("Error")
-            }
-        }
-        while !operands.isEmpty() {
-            operands.push(doMath())
-        }
-        
-    }
-    
-    
     //Function to turn a string into a double, if the string is empty it returns 0
     func makeNumber(_ num: String) -> Double {
         if(num.characters.count < 1){
@@ -101,9 +65,42 @@ class ViewController: UIViewController {
         } else if op == "/" {
             ans=a/b
         }
+        updateDisplay(ans)
         return ans
     }
     
     
-
+    
+    @IBAction func keyStrike(_ sender: UIButton) {
+        let button = sender.titleLabel?.text
+            switch button!{
+                case "+", "-":
+                    print("pressed", button!)
+                    operands.push(makeNumber(number))
+                    number = ""
+                    if(!operators.isEmpty()){
+                        operands.push(doMath())
+                    }
+                    operators.push(button!)
+                case "*", "/":
+                    print("pressed", button!)
+                    operands.push(makeNumber(number))
+                    number = ""
+                    if operators.top() == "*" || operators.top() == "/" {
+                        operands.push(doMath())
+                    }
+                    operators.push(button!)
+                case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
+                    print("pressed", button!)
+                    number.append(button!) //builds the number
+                    updateDisplay(Double(number)!)
+                case "=":
+                    print("pressed", button!)
+                    while !operands.isEmpty() {
+                        operands.push(doMath())
+                    }
+                default:
+                    print("Error")
+        }
+    }
 }
