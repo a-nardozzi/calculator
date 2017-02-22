@@ -50,8 +50,10 @@ class ViewController: UIViewController {
     func doMath() -> Double {
         var ans: Double = 0
         let b = operands.top()
+        print("b:",b)
         operands.pop()
         let a = operands.top()
+        print("a:", a)
         operands.pop()
         let op = operators.top()
         operators.pop()
@@ -65,6 +67,8 @@ class ViewController: UIViewController {
         } else if op == "/" {
             ans=a/b
         }
+        
+        print(a, op, b, "=", ans)
         updateDisplay(ans)
         return ans
     }
@@ -96,7 +100,8 @@ class ViewController: UIViewController {
                     updateDisplay(Double(number)!)
                 case "=":
                     print("pressed", button!)
-                    while !operands.isEmpty() {
+                    operands.push(makeNumber(number))
+                    while !operators.isEmpty() {
                         operands.push(doMath())
                     }
                 default:
