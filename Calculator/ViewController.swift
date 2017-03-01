@@ -88,7 +88,7 @@ class ViewController: UIViewController {
                     print("pressed", button!)
                     operands.push(makeNumber(number))
                     number = ""
-                    if operators.top() == "*" || operators.top() == "/" {
+                    if !operators.isEmpty() && (operators.top() == "*" || operators.top() == "/") {
                         operands.push(doMath())
                     }
                     operators.push(button!)
@@ -102,6 +102,15 @@ class ViewController: UIViewController {
                     while !operators.isEmpty() {
                         operands.push(doMath())
                     }
+                case "AC":
+                    while !operators.isEmpty(){
+                        operators.pop()
+                    }
+                    while !operands.isEmpty(){
+                        operands.pop()
+                    }
+                    displayLabel.text = ""
+                    number = ""
                 default:
                     print("Error")
         }
