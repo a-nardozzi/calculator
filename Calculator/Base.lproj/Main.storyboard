@@ -29,6 +29,9 @@
                                 <state key="normal" title="(">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="keyStrike:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O4j-lm-4VI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xO-lj-OHf">
                                 <rect key="frame" x="211.00000000000003" y="167" width="93.666666666666714" height="105.66666666666669"/>
@@ -37,6 +40,9 @@
                                 <state key="normal" title=")">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="keyStrike:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1d-Lo-3lX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnA-Ml-006">
                                 <rect key="frame" x="8" y="280.66666666666669" width="93.666666666666671" height="106"/>
@@ -157,6 +163,9 @@
                                 <color key="backgroundColor" red="0.1161862051" green="0.1602606295" blue="0.1781088083" alpha="0.17132482390000001" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="."/>
+                                <connections>
+                                    <action selector="keyStrike:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gl9-Tp-yk0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eO8-rb-Tqx">
                                 <rect key="frame" x="211.00000000000003" y="622.33333333333348" width="93.666666666666714" height="105.66666666666663"/>
@@ -185,6 +194,9 @@
                                 <state key="normal" title="+/-">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="keyStrike:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zM0-qK-YD7"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zn5-ZE-5eK">
                                 <rect key="frame" x="8" y="28" width="398" height="131"/>

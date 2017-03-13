@@ -17,6 +17,7 @@ class Stack<Element>{
         data.removeLast()
     }
     func push(_ datum: Element) {
+        print("Pushing \(datum)")
         data.append(datum)
     }
     func isEmpty() -> Bool {
@@ -24,6 +25,11 @@ class Stack<Element>{
             return true
         } else {
             return false
+        }
+    }
+    func printStack(){
+        for i in 0..<data.count {
+            print(data[i])
         }
     }
 }
@@ -34,8 +40,8 @@ class ViewController: UIViewController {
     var number: String = ""
     @IBOutlet var displayLabel: UILabel!
     
-    func updateDisplay(_ displayValue: Double){
-        displayLabel.text = String(displayValue)
+    func updateDisplay(_ displayValue: String){
+        displayLabel.text = displayValue
     }
     
     //Function to turn a string into a double, if the string is empty it returns 0
@@ -47,8 +53,19 @@ class ViewController: UIViewController {
         }
     }
     
+    func checkDecimal() -> Bool {
+        for i in number.characters {
+            if (i == ".") {
+                return true
+            }
+        }
+        return false
+    }
+    
     func doMath() -> Double {
         var ans: Double = 0
+        print("Stack before doMath: ")
+        operands.printStack()
         let b = operands.top()
         operands.pop()
         let a = operands.top()
@@ -67,9 +84,12 @@ class ViewController: UIViewController {
         }
         
         print(a, op, b, "=", ans)
-        updateDisplay(ans)
+        updateDisplay(String(ans))
+        
         return ans
     }
+    
+    
     
     
     
@@ -78,29 +98,58 @@ class ViewController: UIViewController {
             switch button!{
                 case "+", "-":
                     print("pressed", button!)
-                    operands.push(makeNumber(number))
-                    number = ""
-                    if(!operators.isEmpty()){
+                    if(number == "" && operands.isEmpty()){
+                        updateDisplay("Error")
+                        break
+                    } else if (number != "") {
+                        operands.push(makeNumber(number))
+                        number = ""
+                    }
+                    if(!operators.isEmpty() && operators.top() != "("){
                         operands.push(doMath())
                     }
                     operators.push(button!)
                 case "*", "/":
                     print("pressed", button!)
-                    operands.push(makeNumber(number))
-                    number = ""
-                    if !operators.isEmpty() && (operators.top() == "*" || operators.top() == "/") {
+                    if(number == "" && operands.isEmpty()){
+                        updateDisplay("Error")
+                        break
+                    } else if (number != "") {
+                        operands.push(makeNumber(number))
+                        number = ""
+                    }
+                    if !operators.isEmpty() && (operators.top() == "*" || operators.top() == "/")  && operators.top() != "(" {
                         operands.push(doMath())
                     }
                     operators.push(button!)
                 case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
                     print("pressed", button!)
                     number.append(button!) //builds the number
-                    updateDisplay(Double(number)!)
+                    updateDisplay(number)
+                case ".":
+                    print("pressed", button!)
+                    if(checkDecimal()){
+                        break
+                    } else {
+                        number.append(button!)
+                        updateDisplay(number)
+                    }
+                case "(":
+                    operators.push(button!)
+                case ")":
+                    while operators.top() != "(" {
+                        operands.push(doMath())
+                    }
+                    operators.pop()
                 case "=":
                     print("pressed", button!)
+                    //operands.printStack()
                     operands.push(makeNumber(number))
+                    number = ""
                     while !operators.isEmpty() {
                         operands.push(doMath())
+                        print("Stack after doMath: ")
+                        operands.printStack()
                     }
                 case "AC":
                     while !operators.isEmpty(){
