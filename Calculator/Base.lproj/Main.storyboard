@@ -365,6 +365,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clearButton" destination="bI6-gk-egE" id="Yat-NY-BOr"/>
                         <outlet property="displayLabel" destination="Zn5-ZE-5eK" id="OX9-Ho-7oU"/>
                     </connections>
                 </viewController>
