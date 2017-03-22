@@ -56,6 +56,15 @@ class ViewController: UIViewController {
     var number: String = "" //Holds the operand the user is currently building
     @IBOutlet var displayLabel: UILabel! //Outlet to the calculator display
     
+    //Outlet to change the AC/C button from C to AC and back
+    //again based on the current state of the calculator.
+    //If number contains a value, C is displayed.
+    //Otherwise AC is displayed.
+    @IBOutlet var clearButton: UIButton!
+    
+    @IBOutlet var parenthesisIndicator: UILabel!
+    
+    
     //Function to take a string and set the calculators display
     //to the string
     func updateDisplay(_ displayValue: String){
@@ -94,6 +103,7 @@ class ViewController: UIViewController {
         }
         updateDisplay("")
         number = ""
+        parenthesisIndicator.text = ""
     }
     
     //Function to perform simple math functions
@@ -126,11 +136,7 @@ class ViewController: UIViewController {
         return ans
     }
     
-    //Outlet to change the AC/C button from C to AC and back
-    //again based on the current state of the calculator.
-    //If number contains a value, C is displayed.
-    //Otherwise AC is displayed.
-    @IBOutlet var clearButton: UIButton!
+    
     
     //Function that is called whenever a button is pressed on
     //the calculator. Uses the title of the button pressed to
@@ -201,6 +207,7 @@ class ViewController: UIViewController {
                     //begins paranthesized statement, when a right parenthese is inputed
                     //the equation is processed up until the left parenthese is found
                     operators.push(button!)
+                    parenthesisIndicator.text = "( )"
                 case ")":
                     //ends paranthesized statement, once pressed the equation enclosed in
                     //the parenthesis is processed.
@@ -210,6 +217,7 @@ class ViewController: UIViewController {
                         updateDisplay("Error")
                         break
                     }
+                    parenthesisIndicator.text = ""
                     print("pressed", button!)
                     operands.push(makeNumber(number))
                     while operators.top() != "(" {
