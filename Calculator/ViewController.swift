@@ -227,6 +227,7 @@ class ViewController: UIViewController {
                     operators.pop()
                 case "=":
                     if(number == "" && operands.isEmpty()){
+                        //checks to make sure the user inputed a valid expression
                         allClear()
                         updateDisplay("Error")
                         break
@@ -238,14 +239,18 @@ class ViewController: UIViewController {
                     }
                     number = ""
                     while !operators.isEmpty() {
+                        //performs al calculations the user entered
+                        //displays the final answer in the display
                         operands.push(doMath())
                         print("Stack after doMath: ")
                         operands.printStack()
                     }
                 
                 case "+/-":
+                    //switches operand between positive and negative
                     var currentValue = makeNumber(number)
                     if(currentValue == 0.0){
+                        //if current value of operand is 0, does nothing
                         break
                     } else {
                         print("pressed", button!)
@@ -255,13 +260,17 @@ class ViewController: UIViewController {
                     }
                 
                 case "AC", "C":
+                    //clears the display/stacks depending on the
+                    //calculators current state
                     if(number != "") {
+                        //if number is not empty, just clears the number
                         number = ""
                         updateDisplay("")
                         clearButton.setTitle("AC", for: .normal)
-                        
                     } else {
-                       allClear()
+                        //if number is empty, clears all stacks and values
+                        clearButton.setTitle("AC", for: .normal)
+                        allClear()
                     }
                 
                 default:
