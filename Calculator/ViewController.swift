@@ -62,6 +62,8 @@ class ViewController: UIViewController {
     //Otherwise AC is displayed.
     @IBOutlet var clearButton: UIButton!
     
+    //indicator to tell the user that they are currently inside
+    //a paranthesized expression
     @IBOutlet var parenthesisIndicator: UILabel!
     
     
