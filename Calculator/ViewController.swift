@@ -21,7 +21,9 @@ class Stack<Element>{
     //Pops the element at the top of the stack off
     //Does NOT return the element
     func pop() {
-        data.removeLast()
+        if data.last != nil{
+            data.removeLast()
+        }
     }
     
     //Pushes element onto the stack
@@ -126,9 +128,9 @@ class ViewController: UIViewController {
             ans=a+b
         } else if op == "-" {
             ans=a-b
-        } else if op == "*" {
+        } else if op == "x" {
             ans=a*b
-        } else if op == "/" {
+        } else if op == "÷" {
             ans=a/b
         }
         
@@ -167,7 +169,7 @@ class ViewController: UIViewController {
                     }
                     operators.push(button!)
                 
-                case "*", "/":
+                case "x", "÷":
                     print("pressed", button!)
                     if(number == "" && operands.isEmpty()){
                         allClear()
@@ -180,7 +182,7 @@ class ViewController: UIViewController {
                         operands.push(makeNumber(number))
                         number = ""
                     }
-                    if !operators.isEmpty() && (operators.top() == "*" || operators.top() == "/")  && operators.top() != "(" {
+                    if !operators.isEmpty() && (operators.top() == "x" || operators.top() == "÷")  && operators.top() != "(" {
                         //ensures the order of operations is followed
                         operands.push(doMath())
                     }
