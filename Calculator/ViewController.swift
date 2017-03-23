@@ -146,7 +146,7 @@ class ViewController: UIViewController {
     //True if it is, false if it is not
     func isOperator(op: String ) -> Bool {
         switch op {
-            case "+","-","x","÷":
+            case "+","-","x","÷","=":
                 return true
             default:
                 return false
@@ -173,7 +173,7 @@ class ViewController: UIViewController {
             lastClick = button!
             clickCnt += 1
         }
-        print("LastClick: "+lastClick)
+        //print("LastClick: "+lastClick)
             switch button!{
                 case "+", "-":
                     print("pressed", button!)
