@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Calculator
 //
-//  Created by Alexander Nardozzi on 2/2/17.
+//  Created by Alexander Nardozzi and Yingqi Liu on 2/2/17.
 //  Copyright © 2017 CSC2310. All rights reserved.
 //
 
@@ -56,8 +56,8 @@ class ViewController: UIViewController {
     var operators = Stack<String>() //Holds operator symbols +, -, *, and /
     var operands = Stack<Double>() //Holds operands 0-9
     var number: String = "" //Holds the operand the user is currently building
-    var clickCnt: Int = 0 //Counter to hold the number of click times
-    var lastClick: String = "" //Holds the button clicked before
+    var clickCnt: Int = 0 //Counter for the click times
+    var lastClick: String = "" //Holds the value of the last button clicked
     @IBOutlet var displayLabel: UILabel! //Outlet to the calculator display
     
     //Outlet to change the AC/C button from C to AC and back
@@ -161,6 +161,10 @@ class ViewController: UIViewController {
         
         //button becomes the pressed buttons title
         let button = sender.titleLabel?.text
+        
+        //This if statement will change the operator after you click
+        //two operators, for example: 5+-2, the program throw away +,
+        // and do 5-2
         if clickCnt == 0 {
             lastClick = button!
             clickCnt += 1
@@ -173,7 +177,6 @@ class ViewController: UIViewController {
             lastClick = button!
             clickCnt += 1
         }
-        //print("LastClick: "+lastClick)
             switch button!{
                 case "+", "-":
                     print("pressed", button!)
