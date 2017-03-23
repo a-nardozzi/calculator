@@ -56,6 +56,8 @@ class ViewController: UIViewController {
     var operators = Stack<String>() //Holds operator symbols +, -, *, and /
     var operands = Stack<Double>() //Holds operands 0-9
     var number: String = "" //Holds the operand the user is currently building
+    var clickCnt: Int = 0 //Counter to hold the number of click times
+    var lastClick: String = "" //Holds the button clicked before
     @IBOutlet var displayLabel: UILabel! //Outlet to the calculator display
     
     //Outlet to change the AC/C button from C to AC and back
@@ -140,14 +142,38 @@ class ViewController: UIViewController {
         return ans
     }
     
+    //Returns a bool stating whether the string is a operator
+    //True if it is, false if it is not
+    func isOperator(op: String ) -> Bool {
+        switch op {
+            case "+","-","x","÷":
+                return true
+            default:
+                return false
+        }
+    }
     
     
     //Function that is called whenever a button is pressed on
     //the calculator. Uses the title of the button pressed to
     //determine what to do.
     @IBAction func keyStrike(_ sender: UIButton) {
+        
         //button becomes the pressed buttons title
         let button = sender.titleLabel?.text
+        if clickCnt == 0 {
+            lastClick = button!
+            clickCnt += 1
+        }else{
+            if isOperator(op: lastClick) == true{
+                if isOperator(op: button!) == true{
+                    operators.pop()
+                }
+            }
+            lastClick = button!
+            clickCnt += 1
+        }
+        print("LastClick: "+lastClick)
             switch button!{
                 case "+", "-":
                     print("pressed", button!)
