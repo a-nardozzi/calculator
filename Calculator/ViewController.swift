@@ -123,6 +123,9 @@ class ViewController: UIViewController {
         operands.pop()
         let a = operands.top()
         operands.pop()
+        if(operators.top() == "("){
+            operators.pop()
+        }
         let op = operators.top()
         operators.pop()
         
@@ -252,7 +255,9 @@ class ViewController: UIViewController {
                     }
                     parenthesisIndicator.text = ""
                     print("pressed", button!)
-                    operands.push(makeNumber(number))
+                    if(number != ""){
+                        operands.push(makeNumber(number))
+                    }
                     while operators.top() != "(" {
                         //continues until "(" is reached
                         operands.push(doMath())
@@ -277,8 +282,8 @@ class ViewController: UIViewController {
                     //operands.printStack()
                     if(number != ""){
                         operands.push(makeNumber(number))
+                        number = ""
                     }
-                    number = ""
                     while !operators.isEmpty() {
                         //performs al calculations the user entered
                         //displays the final answer in the display
