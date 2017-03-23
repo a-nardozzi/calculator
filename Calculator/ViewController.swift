@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     var operators = Stack<String>() //Holds operator symbols +, -, *, and /
     var operands = Stack<Double>() //Holds operands 0-9
     var number: String = "" //Holds the operand the user is currently building
-    var clickCnt: Int = 0 //Counter for the click times
+    var clickCnt: Int = 0 //Counter for the clicks
     var lastClick: String = "" //Holds the value of the last button clicked
     @IBOutlet var displayLabel: UILabel! //Outlet to the calculator display
     
