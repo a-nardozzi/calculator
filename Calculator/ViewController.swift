@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Calculator
 //
-//  Created by Alexander Nardozzi and Yingqi Liu on 2/2/17.
+//  Created by Alexander Nardozzi
 //  Copyright © 2017 CSC2310. All rights reserved.
 //
 
